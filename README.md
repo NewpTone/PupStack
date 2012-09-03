@@ -7,5 +7,4 @@ Now it just modify the modules from puppetlabs-openstack and make them better to
 
 
 ##Feel free to contact me.
-Author:Newptone
-Email:yuxcer@gmail.com
+Newptone  yuxcer@gmail.com
