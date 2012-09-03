@@ -24,7 +24,7 @@
 ## 为了简单，全部都是用root来运行。 
 if [ `whoami` != "root" ]; then
         sudo -s
-        exec su -c 'sh ./FastStack.sh'
+        exec su -c 'sh ./pres_stack.sh'
 fi
 #########################################################################
 
