@@ -36,16 +36,16 @@ echo '[agent]' >> /etc/puppet/puppet.conf
 
 augtool << EOF
 
-set /files/etc/puppet/puppet.conf/main/reports store,http,log,foreman
-set /files/etc/puppet/puppet.conf/main/reporturl http://127.0.0.1:3000/reports/upload
-set /files/etc/puppet/puppet.conf/main/storeconfigs true
-set /files/etc/puppet/puppet.conf/main/dbadapter mysql2
-set /files/etc/puppet/puppet.conf/main/dbuser puppet
-set /files/etc/puppet/puppet.conf/main/dbpassword puppet
-set /files/etc/puppet/puppet.conf/main/dbserver localhost
-set /files/etc/puppet/puppet.conf/main/autosign \$confdir/autosign.conf {owner = service, group = service, mode = 664 }
-#set /files/etc/puppet/puppet.conf/main/node_terminus exec
-#set /files/etc/puppet/puppet.conf/main/external_nodes /etc/puppet/node.rb
+set /files/etc/puppet/puppet.conf/master/reports store,http,log,foreman
+set /files/etc/puppet/puppet.conf/master/reporturl http://127.0.0.1:3000/reports/upload
+set /files/etc/puppet/puppet.conf/master/storeconfigs true
+set /files/etc/puppet/puppet.conf/master/dbadapter mysql2
+set /files/etc/puppet/puppet.conf/master/dbuser puppet
+set /files/etc/puppet/puppet.conf/master/dbpassword puppet
+set /files/etc/puppet/puppet.conf/master/dbserver localhost
+set /files/etc/puppet/puppet.conf/master/autosign \$confdir/autosign.conf {owner = service, group = service, mode = 664 }
+#set /files/etc/puppet/puppet.conf/master/node_terminus exec
+#set /files/etc/puppet/puppet.conf/master/external_nodes /etc/puppet/node.rb
 
 set /files/etc/puppet/puppet.conf/agent/server sws-yz-10.master.com
 set /files/etc/puppet/puppet.conf/agent/certname openstack_controller
@@ -70,6 +70,9 @@ cd /etc/puppet/modules
 git clone -b sws git://github.com/NewpTone/puppetlabs-openstack openstack
 cd openstack
 rake modules:clone
+
+# We use a sws branch 
+cd /etc/puppet/modules
 git clone -b sws git://github.com/NewpTone/puppetlabs-keystone.git keystone
 git clone -b sws git://github.com/NewpTone/puppetlabs-swift.git swift
 
