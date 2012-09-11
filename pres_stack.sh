@@ -1,17 +1,13 @@
 #!/usr/bin/env bash 
-#SwsStack.sh** is a tool to deploy complete and real OpenStack  service fast.  
+#pres_stack.sh  to install basic package service fast.  
   
-# This script installs and configures various combinations of *Glance*,  
-#*Swift*, *Horizon*, *Keystone*, *Nova*, *Mysql* and others.  
+# This script installs the basic packages.
   
 # yuxcer@gmail.com (Newptone)  
 # Learn more and get the most recent version at http://
 
 ## 请使用root执行本脚本！
 ## Ubuntu 12.04 ("Precise") 部署 OpenStack Essex
-## 参考：
-## http://hi.baidu.com/chenshake/item/29a7b8c1b96fb82d46d5c0fb
-## http://docs.openstack.org/essex/openstack-compute/starter/content/
 
 ## 一：准备系统
 ## 1：下载ubuntu 12.04. 服务器版本
@@ -36,10 +32,26 @@ gem install puppetlabs_spec_helper
 echo 'Finish Base Package Install!'
 #modify Puppet.conf to enable storedconfig and configure database
 
+echo '[agent]' >> /etc/puppet/puppet.conf
+
 augtool << EOF
+
+set /files/etc/puppet/puppet.conf/main/reports store,http,log,foreman
+set /files/etc/puppet/puppet.conf/main/reporturl http://127.0.0.1:3000/reports/upload
 set /files/etc/puppet/puppet.conf/main/storeconfigs true
-set /files/etc/puppet/puppet.conf/main/dbadapter sqlite3
-set /files/etc/puppet/puppet.conf/main/dblocation /var/lib/puppet/server_data/storeconfigs.sqlite
+set /files/etc/puppet/puppet.conf/main/dbadapter mysql2
+set /files/etc/puppet/puppet.conf/main/dbuser puppet
+set /files/etc/puppet/puppet.conf/main/dbpassword puppet
+set /files/etc/puppet/puppet.conf/main/dbserver localhost
+set /files/etc/puppet/puppet.conf/main/autosign \$confdir/autosign.conf {owner = service, group = service, mode = 664 }
+#set /files/etc/puppet/puppet.conf/main/node_terminus exec
+#set /files/etc/puppet/puppet.conf/main/external_nodes /etc/puppet/node.rb
+
+set /files/etc/puppet/puppet.conf/agent/server sws-yz-10.master.com
+set /files/etc/puppet/puppet.conf/agent/certname openstack_controller
+set /files/etc/puppet/puppet.conf/agent/report true
+set /files/etc/puppet/puppet.conf/agent/pluginsync true
+
 save
 EOF
 
@@ -55,9 +67,11 @@ adduser nova libvirtd
 
 #Download the openstack modules
 cd /etc/puppet/modules
-git clone git://github.com/puppetlabs/puppetlabs-openstack openstack
+git clone -b sws git://github.com/NewpTone/puppetlabs-openstack openstack
 cd openstack
 rake modules:clone
+git clone -b sws git://github.com/NewpTone/puppetlabs-keystone.git keystone
+git clone -b sws git://github.com/NewpTone/puppetlabs-swift.git swift
 
 
 echo 'Rrepare for Deploy is finished!'
