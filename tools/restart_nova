@@ -1,0 +1,5 @@
+service nova-api restart
+service nova-scheduler restart
+service nova-compute restart
+service nova-network restart
+service nova-consoleauth restart
