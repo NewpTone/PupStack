@@ -1,5 +1,2 @@
-service nova-api restart
-service nova-scheduler restart
-service nova-compute restart
-service nova-network restart
-service nova-consoleauth restart
+ls /etc/init/nova-* | cut -d '/' -f4 | cut -d '.' -f1 | while read S; do sudo service $S stop ; done
+ls /etc/init/nova-* | cut -d '/' -f4 | cut -d  '.' -f1 | while read S; do service $S start ; done
