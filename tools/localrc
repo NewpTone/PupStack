@@ -1,0 +1,53 @@
+OFFLINE=True
+RECLONE=yes
+ROOTSLEEP=3
+SYSLOG=True
+##LOGFILE=stack.log
+
+MYSQL_PASSWORD=nova
+RABBIT_PASSWORD=nova
+SERVICE_TOKEN=nova
+SERVICE_PASSWORD=nova
+ADMIN_PASSWORD=nova
+
+## keystone setting
+MYSQL_HOST=localhost
+RABBIT_HOST=localhost
+KEYSTONE_AUTH_HOST=localhost
+KEYSTONE_SERVICE_HOST=localhost
+KEYSTONE_CATALOG_BACKEND=file
+
+## Quantum setting
+##Q_PLUGIN=openvswitch
+##Q_AUTH_STRATEGY=keystone
+##ENABLE_TENANT_TUNNELS=True
+##TENANT_TUNNEL_RANGES=100:200
+
+##Q_PLUGIN=linuxbridge
+##Q_AUTH_STRATEGY=keystone
+##ENABLE_TENANT_VLANS=True
+##LB_INTERFACE_MAPPINGS=physnet0:eth0
+##LB_VLAN_RANGES=physnet0:100:200
+
+# basic services
+ENABLED_SERVICES=mysql,rabbit
+
+# control node
+MULTI_HOST=True
+NOVA_ENABLED_APIS=ec2,osapi_compute,metadata
+enable_service key g-api g-reg horizon
+##enable_service quantum q-svc q-dhcp q-l3
+enable_service n-api n-sch n-crt n-cauth n-novnc
+enable_service n-net
+
+# compute node
+enable_service n-cpu
+##enable_service q-agt
+
+## screen
+##SCREEN_LOGDIR=/var/log/screen
+SCREEN_HARDSTATUS="%{.bW}%-w%{.rY}%n %t%{-}%+w %=%{..G} %H(%l) %{..Y} 
+%Y/%m/%d %c:%s "
+
+# IMAGE
+IMAGE_URLS="http://launchpad.net/cirros/trunk/0.3.0/+download/cirros-0.3.0-i386-uec.tar.gz
