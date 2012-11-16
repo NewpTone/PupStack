@@ -53,6 +53,7 @@ cp pre_setup.pp /etc/puppet/manifests
 cd /etc/puppet/modules
 git clone git://github.com/NewpTone/puppetlabs-ntp.git ntp
 git clone git://github.com/puppetlabs/puppetlabs-apt  apt 
+git clone git://github.com/puppetlabs/puppetlabs-stdlib stdlib
 
 
 puppet apply /etc/puppet/manifests/pre_setup.pp --debug
