@@ -40,6 +40,8 @@ set /files/etc/puppet/puppet.conf/agent/server sws-yz-10.master.com
 set /files/etc/puppet/puppet.conf/agent/report true
 set /files/etc/puppet/puppet.conf/agent/pluginsync true
 set /files/etc/puppet/puppet.conf/agent/listen true
+set /files/etc/puppet/puppet.conf/agent/environment folsom
+
 
 save
 EOF
