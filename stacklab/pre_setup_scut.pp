@@ -33,39 +33,38 @@ host {'ntp-server':
 
 host {'stacklab-master':
 	comment			=> 'Stacklab master node',
-	name		    => 'sws-yz-10.master.com',
-	host_aliases	=> 'sws-yz-10',
-	ip				=> '123.126.53.170',
+	name		    => 'center.stacklab.org',
+	host_aliases	=> 'center',
+	ip				=> '54.251.115.186',
 }
-host {'xjtu-1':
-	name			=> 'xjtu-1.controller.edu',
-	host_aliases	=> 'xjtu-1',
-	ip				=> '123.139.159.3',
+host {'scut-1':
+	name			=> 'scut1.controller.scut.edu',
+	host_aliases	=> 'scut1',
+	ip				=> '116.57.78.3',
 	}
-host {'xjtu-2':
-	name			=> 'xjtu-2.compute.edu',
-	host_aliases	=> 'xjtu-2',
-	ip				=> '123.139.159.4',
+
+host {'scut-2':
+	name			=> 'scut2.compute.scut.edu',
+	host_aliases	=> 'scut2',
+	ip				=> '116.57.78.4',
 	}
-host {'xjtu-3':
-	name			=> 'xjtu-3.compute.edu',
-	host_aliases	=> 'xjtu-3',
-	ip				=> '123.139.159.5',
+
+host {'scut-3':
+	name			=> 'scut3.compute.scut.edu',
+	host_aliases	=> 'scut3',
+	ip				=> '116.57.78.5',
 	}
-host {'xjtu-4':
-	name			=> 'xjtu-4.compute.edu',
-	host_aliases	=> 'xjtu-4',
-	ip				=> '123.139.159.7',
+
+host {'scut-4':
+	name			=> 'scut4.compute.scut.edu',
+	host_aliases	=> 'scut4',
+	ip				=> '116.57.78.6',
 	}
-host {'xjtu-5':
-	name			=> 'xjtu-5.compute.edu',
-	host_aliases	=> 'xjtu-5',
-	ip				=> '123.139.159.13',
-	}
-host {'xjtu-6':
-	name			=> 'xjtu-6.compute.edu',
-	host_aliases	=> 'xjtu-6',
-	ip				=> '123.139.159.15',
+
+host {'scut-5':
+	name			=> 'scut5.compute.scut.edu',
+	host_aliases	=> 'scut5',
+	ip				=> '116.67.78.7',
 	}
 
 class {'ntp':
