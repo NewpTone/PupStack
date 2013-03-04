@@ -40,7 +40,7 @@ set /files/etc/puppet/puppet.conf/agent/environment folsom
 save
 EOF
 
-cp pre_setup.pp /etc/puppet/manifests
+cp pre_setup_scut.pp /etc/puppet/manifests
 
 #Download the openstack modules
 cd /etc/puppet/modules
